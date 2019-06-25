@@ -160,7 +160,17 @@ public class GuiScrollingItemsSmall extends GuiScrollingBase<GuiScrollingItemsSm
 		@Override
 		public void onMouseClick(int mx, int my, int px, int py, int click, int index)
 		{
-			// JEI/NEI support here
+			if(stack != null && isWithin(mx, my, px + 1, py + 1, 16, 16)) {
+				if(Loader.isModLoaded("NotEnoughItems")) {
+					try {
+						if(click == 0) {
+							codechicken.nei.recipe.GuiCraftingRecipe.openRecipeGui("item", stack.getBaseStack());
+						} else if(click == 1) {
+							codechicken.nei.recipe.GuiUsageRecipe.openRecipeGui("item", stack.getBaseStack());
+						}
+					} catch(Exception e){}
+				}
+			}
 		}
 
 		@Override
